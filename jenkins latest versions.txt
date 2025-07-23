@@ -1,0 +1,98 @@
+--------Java and Jenkins Installation---------
+$ sudo yum update 
+$ sudo yum install java-17-amazon-corretto -y
+
+Add the Jenkins repo using the following command:
+
+$ sudo wget -O /etc/yum.repos.d/jenkins.repo \
+    https://pkg.jenkins.io/redhat-stable/jenkins.repo
+
+Import a key file from Jenkins-CI to enable installation from the package:
+$sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+$sudo yum upgrade
+
+$sudo yum install jenkins -y
+$sudo systemctl enable jenkins
+$sudo systemctl start jenkins
+
+finally run this command in CLI
+$sudo chown -R jenkins:jenkins /var/lib/jenkins
+
+FOR BUILD PROJECT(ONLINE)
+# mount -o remount,size=4G /tmp
+
+
+
+ Step 1: Update the System
+
+
+sudo yum update -y
+✅ Step 2: Install Java (Advanced Version)
+Amazon Linux 2 might not include the latest Java in its default repositories, so we’ll install OpenJDK 17 or newer from Amazon Corretto or AdoptOpenJDK.
+
+Option 1: Install OpenJDK 17 (Amazon Corretto)
+
+
+sudo rpm --import https://yum.corretto.aws/corretto.key
+sudo curl -Lo /etc/yum.repos.d/corretto.repo https://yum.corretto.aws/corretto.repo
+sudo yum install -y java-17-amazon-corretto-devel
+✅ Verify Java installation:
+
+java -version
+✅ Step 3: Install Maven (Advanced Version)
+Amazon Linux 2 comes with an outdated Maven version. For the latest version, install it manually.
+
+🔧 Manual Installation of Latest Maven:
+Install dependencies:
+
+
+sudo yum install -y wget tar
+Download the latest Maven:
+
+Go to the Maven download page to check the latest version (e.g., 3.9.6).
+
+
+cd /opt
+sudo wget https://downloads.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz
+sudo tar -xvzf apache-maven-3.9.6-bin.tar.gz
+sudo ln -s apache-maven-3.9.6 apache-maven
+Set environment variables:
+
+
+sudo tee /etc/profile.d/maven.sh <<EOF
+export M2_HOME=/opt/apache-maven
+export PATH=\$M2_HOME/bin:\$PATH
+EOF
+
+sudo chmod +x /etc/profile.d/maven.sh
+source /etc/profile.d/maven.sh
+✅ Verify Maven installation:
+
+mvn -version
+✅ Step 4: (Optional) Make Java & Maven Default
+If multiple Java versions exist:
+
+
+sudo alternatives --config java
+sudo alternatives --config javac
+Set Maven path globally (if required):
+
+
+export PATH=/opt/apache-maven/bin:$PATH
+You can also add it to .bashrc or .bash_profile for persistence.
+
+🔍 Verify Everything Works
+Run:
+
+
+java -version
+mvn -version
+You should see:
+
+Java: Corretto 17 or higher
+
+Maven: 3.9.x or latest version you installed
+
+
+
+
