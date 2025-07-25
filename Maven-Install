@@ -1,0 +1,15 @@
+MAVEN INSTALLATION PROCESS:
+
+        step 1 : mvn --version
+        step 2 : yum install maven -y(centos) or apt-get install maven -y(ubuntu)
+        step 3 : mvn --version
+        step 4 : vim /etc/profile
+                                export PATH USER LOGNAME MAIL HOSTNAME HISTSIZE HISTCONTROL
+                                -->export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-11.0.16.0.8-1.amzn2.0.1.x86_64
+                                -->export PATH=$JAVA_HOME:/bin:$PATH
+                                -->export $MAVEN_HOME=/usr/share/maven
+
+
+                                --> Use this
+                                    export MAVEN_HOME=/usr/share/maven
+                                    export PATH=$MAVEN_HOME/bin:$PATH
