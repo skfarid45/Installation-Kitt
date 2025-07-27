@@ -20,7 +20,8 @@ $sudo chown -R jenkins:jenkins /var/lib/jenkins
 
 FOR BUILD PROJECT(ONLINE)
 # mount -o remount,size=4G /tmp
-
+If NOT WORKED USE IT
+# mount -o remount,size=4G tmpfs /tmp
 
 
  Step 1: Update the System
